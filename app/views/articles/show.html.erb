@@ -1,11 +1,14 @@
-<h1>Showing the article</h1>
-
-<p>
-  Titulo: <%= @article.title %>
-</p>
-<p>
-  Descrição: <%= @article.description %>
-</p>
-
-<%= link_to 'Edit article', edit_article_path %>
-<%= link_to "Back to listing", articles_path %>
+<h2 align="center">Titulo: <%= @article.title %></h2>
+<div class="row">
+  <div class="well col-xs-8 col-xs-offset-2">
+    <h4 class="center description">Descrição:</h4>
+    <hr>
+    <%= simple_format(@article.description) %>
+    <div class="article-actions">
+      <%= link_to 'Edit article', edit_article_path, class: "btn btn-xs btn-primary" %>
+      <%= link_to 'Delete article', article_path(@article), method: :delete,
+                          data: { confirm: "Sure?" }, class: "btn btn-xs btn-danger" %>
+      <%= link_to "View articles", articles_path, class: "btn btn-xs btn-success" %>
+    </div>
+  </div>
+</div>
