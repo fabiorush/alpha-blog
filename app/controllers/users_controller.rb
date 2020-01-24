@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the Alpha Blog, #{@user.username}!"
       redirect_to articles_path
     else
-      r ender 'new'
+      render 'new'
     end
   end
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       flash[:success] = "Your account was updated successfully"
       redirect_to articles_path
     else
-      r ender 'new'
+      render 'new'
     end
   end
 
