@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_same_user, only: [:edit, :update]
 
   def index
@@ -34,6 +34,17 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     else
       render 'new'
+    end
+  end
+
+  def destroy
+    if logged_in? and current_user.admin?
+      @user.destroy
+      flash[:success] = "Account was successfully deleted"
+      redirect_to users_path
+    else
+      flash[:danger] = "Only admin can delete users"
+      redirect_to users_path
     end
   end
 
